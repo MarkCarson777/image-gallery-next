@@ -9,21 +9,21 @@ type Image = {
   alt_description: string;
 };
 
-const accessKey = process.env.UNSPLASH_ACCESS_KEY;
-
-async function getPhotos() {
+async function fetchPhotos(total: number) {
   const res = await fetch(
-    `https://api.unsplash.com/photos?client_id=${accessKey}&per_page=10`,
+    `https://api.unsplash.com/photos?client_id=${process.env.UNSPLASH_ACCESS_KEY}&per_page=${total}`,
     { cache: "no-store" }
   );
 
-  const photos = await res.json();
+  if (!res.ok) {
+    throw new Error("Failed to fetch photo");
+  }
 
-  return photos;
+  return res.json();
 }
 
 export default async function Page() {
-  const photos = await getPhotos();
+  const photos = await fetchPhotos(20);
 
   return (
     <div className="container mx-auto py-10">

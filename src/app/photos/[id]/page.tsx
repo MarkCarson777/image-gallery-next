@@ -1,33 +1,30 @@
 import Image from "next/image";
 import Link from "next/link";
 
-type Params = {
-  id: string;
-};
-
 type Props = {
-  params: Params;
+  params: { id: string };
 };
 
-const accessKey = process.env.UNSPLASH_ACCESS_KEY;
-
-async function getPhoto(params: Params) {
+async function fetchPhoto(id: string) {
   const res = await fetch(
-    `https://api.unsplash.com/photos/${params.id}?client_id=${accessKey}`
+    `https://api.unsplash.com/photos/${id}?client_id=${process.env.UNSPLASH_ACCESS_KEY}`
   );
-  const photo = await res.json();
 
-  return photo;
+  if (!res.ok) {
+    throw new Error("Failed to fetch photo");
+  }
+
+  return res.json();
 }
 
 export default async function Page({ params }: Props) {
-  const photo = await getPhoto(params);
+  const photo = await fetchPhoto(params.id);
 
   return (
     <div className="container mx-auto py-10">
       <Image
         src={photo.urls.raw}
-        alt={photo.alt_description}
+        alt={photo.alt_description || "Unsplash photo"}
         width={600}
         height={600}
         className="object-cover h-full w-full"

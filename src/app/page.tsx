@@ -16,7 +16,7 @@ async function fetchPhotos(amount: number) {
   );
 
   if (!res.ok) {
-    throw new Error("Failed to fetch photo");
+    throw new Error("Failed to fetch photos");
   }
 
   return res.json();

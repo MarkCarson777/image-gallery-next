@@ -9,9 +9,9 @@ type Image = {
   alt_description: string;
 };
 
-async function fetchPhotos(total: number) {
+async function fetchPhotos(amount: number) {
   const res = await fetch(
-    `https://api.unsplash.com/photos?client_id=${process.env.UNSPLASH_ACCESS_KEY}&per_page=${total}`,
+    `https://api.unsplash.com/photos?client_id=${process.env.UNSPLASH_ACCESS_KEY}&per_page=${amount}`,
     { cache: "no-store" }
   );
 

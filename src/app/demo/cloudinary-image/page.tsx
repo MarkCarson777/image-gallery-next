@@ -10,7 +10,7 @@ export default function CloudinaryImage() {
       <div className="relative h-[400px] w-full">
         <Image
           className="object-cover"
-          src="texture-one"
+          src="/textures/texture-one"
           alt="Texture"
           fill
           priority

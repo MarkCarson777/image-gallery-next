@@ -23,7 +23,7 @@ export default function CloudinaryMasonry() {
             alt={`Texture-${index + 1}`}
             priority
             width={300}
-            height={600}
+            height={0}
             loader={cloudinaryLoader}
           />
         );

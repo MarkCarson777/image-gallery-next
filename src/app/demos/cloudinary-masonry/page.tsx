@@ -13,6 +13,8 @@ export default function CloudinaryMasonry() {
     "/textures/texture-five",
   ];
 
+  // Image sizes not optimised for masonry layout
+
   return (
     <main className="mx-auto max-w-[900px] columns-3 space-y-4 pt-4">
       {imageUrls.map((src, index) => {
